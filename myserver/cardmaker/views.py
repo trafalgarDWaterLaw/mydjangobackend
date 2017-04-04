@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from models import users,products
-from serializers import userSerializers,productSerializers
+from models import users,products,product,component
+from serializers import userSerializers,productSerializers,product_id_Serializers,component_id_Serializers
 
 
 
@@ -38,4 +38,28 @@ def product_detail(request):
         prodid = request.GET.get('prodid', None)
         prod = products.objects.get(product_id=prodid)
         serializer = productSerializers(prod,many=False)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getproduct(request,product_id):
+    if request.method == 'GET':
+        prodid = product_id
+        prod = product.objects.filter(product_id=prodid)
+        serializer = product_id_Serializers(prod,many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def getcomponentfromproductid(request,p_id):
+    if request.method == 'GET':
+        product_id = p_id
+        prod = component.objects.filter(product_id=product_id)
+        serializer = component_id_Serializers(prod,many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def getcomponentfromcomponentid(request,c_id):
+    if request.method == 'GET':
+        prod = component.objects.filter(component_id=c_id)
+        serializer = component_id_Serializers(prod,many=True)
         return Response(serializer.data)

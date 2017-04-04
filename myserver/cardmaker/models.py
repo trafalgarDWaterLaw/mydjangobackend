@@ -23,3 +23,16 @@ class products(models.Model):
     user_id = models.ForeignKey(users,to_field='user_id')
     user_upload = models.BooleanField(default= False)
     layout = models.CharField(max_length=100, blank=True)
+
+class product(models.Model):
+    product_id = models.CharField(max_length=100,default = '')
+    width = models.CharField(max_length=100,default = '')
+    height = models.CharField(max_length=100,default = '')
+
+
+class component(models.Model):
+    product_id = models.CharField(max_length=100,default = '')
+    width = models.CharField(max_length=100,default = '')
+    height = models.CharField(max_length=100,default = '')
+    position = models.CharField(max_length=100,default = '')
+    component_id = models.CharField(max_length=100,default = '')

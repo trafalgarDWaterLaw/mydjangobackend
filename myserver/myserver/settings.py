@@ -78,11 +78,12 @@ WSGI_APPLICATION = 'myserver.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        # 'ENGINE': 'cardmakerdb.cowfeer5q80u.us-west-2.rds.amazonaws.com:3306',
         'NAME': 'cardmakerdb',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'passion1',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': 3306,
     }
 }
 
